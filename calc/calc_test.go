@@ -122,3 +122,28 @@ func TestModulo(t *testing.T) {
 		})
 	}
 }
+
+func TestPower(t *testing.T) {
+	tests := []struct {
+		name     string
+		base, exp float64
+		want     float64
+	}{
+		{"positive base and exponent", 2, 3, 8},
+		{"base to power of zero", 5, 0, 1},
+		{"base to power of one", 5, 1, 5},
+		{"negative exponent", 2, -2, 0.25},
+		{"fractional exponent", 4, 0.5, 2},
+		{"zero to positive power", 0, 5, 0},
+		{"negative base and even exponent", -2, 2, 4},
+		{"negative base and odd exponent", -2, 3, -8},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Power(tt.base, tt.exp); got != tt.want {
+				t.Errorf("Power(%v, %v) = %v, want %v", tt.base, tt.exp, got, tt.want)
+			}
+		})
+	}
+}

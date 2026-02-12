@@ -1,6 +1,9 @@
 package calc
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
 
 // Add returns the sum of two numbers
 func Add(a, b float64) float64 {
@@ -33,4 +36,9 @@ func Modulo(a, b float64) (float64, error) {
 		return 0, errors.New("modulo by zero")
 	}
 	return float64(int(a) % int(b)), nil
+}
+
+// Power returns base raised to the power of exp
+func Power(base, exp float64) float64 {
+	return math.Pow(base, exp)
 }
