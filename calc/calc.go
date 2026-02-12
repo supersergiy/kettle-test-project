@@ -25,3 +25,12 @@ func Divide(a, b float64) (float64, error) {
 	}
 	return a / b, nil
 }
+
+// Modulo returns the remainder of a divided by b
+// Returns an error if b is zero
+func Modulo(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, errors.New("modulo by zero")
+	}
+	return float64(int(a) % int(b)), nil
+}

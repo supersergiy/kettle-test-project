@@ -93,3 +93,32 @@ func TestDivide(t *testing.T) {
 		})
 	}
 }
+
+func TestModulo(t *testing.T) {
+	tests := []struct {
+		name    string
+		a, b    float64
+		want    float64
+		wantErr bool
+	}{
+		{"positive numbers", 10, 3, 1, false},
+		{"exact division", 9, 3, 0, false},
+		{"negative dividend", -10, 3, -1, false},
+		{"negative divisor", 10, -3, 1, false},
+		{"both negative", -10, -3, -1, false},
+		{"modulo by zero", 5, 0, 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := Modulo(tt.a, tt.b)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Modulo(%v, %v) error = %v, wantErr %v", tt.a, tt.b, err, tt.wantErr)
+				return
+			}
+			if !tt.wantErr && got != tt.want {
+				t.Errorf("Modulo(%v, %v) = %v, want %v", tt.a, tt.b, got, tt.want)
+			}
+		})
+	}
+}
